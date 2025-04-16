@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceAbstracion
+namespace ServicesAbstracion
 {
     public interface IProductService
     {

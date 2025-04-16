@@ -27,7 +27,7 @@ namespace Persistence
                 if (!_dbContext.ProductBrands.Any())
                 {
                     //var ProductBrandData = await File.ReadAllTextAsync(@"..\Infrastructure\Persistence\Data\DataSeed\brands.json");
-                    var ProductBrandData =  File.OpenRead(@"..\Infrastructure\Persistence\Data\DataSeed\brands.json");
+                    var ProductBrandData = File.OpenRead(@"..\Infrastructure\Persistence\Data\DataSeed\brands.json");
                     //Covert Data "String" => C# Objects [ProductBrand]
                     var ProductBrands = await JsonSerializer.DeserializeAsync<List<ProductBrand>>(ProductBrandData);
 
@@ -59,7 +59,7 @@ namespace Persistence
                 await _dbContext.SaveChangesAsync();
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }

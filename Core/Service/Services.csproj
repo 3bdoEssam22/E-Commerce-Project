@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DomainLayer\DomainLayer.csproj" />
-    <ProjectReference Include="..\ServiceAbstracion\ServiceAbstracion.csproj" />
+    <ProjectReference Include="..\ServiceAbstracion\ServicesAbstracion.csproj" />
   </ItemGroup>
 
 </Project>

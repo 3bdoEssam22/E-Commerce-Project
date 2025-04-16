@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainLayer", "Core\DomainL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Core\Service\Services.csproj", "{F913D121-1598-4985-AB78-E6B3B41D1D72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceAbstracion", "Core\ServiceAbstracion\ServiceAbstracion.csproj", "{521CE1F6-547D-4445-B484-2F21D759E1F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesAbstracion", "Core\ServiceAbstracion\ServicesAbstracion.csproj", "{521CE1F6-547D-4445-B484-2F21D759E1F8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{612ACA03-78C2-47EA-BE93-69E297E084B4}"
 EndProject

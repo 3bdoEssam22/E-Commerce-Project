@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using DomainLayer.Contracts;
 using DomainLayer.Models;
-using ServiceAbstracion;
+using ServicesAbstracion;
 using Shared.DataTransferObjects;
 using System;
 using System.Collections.Generic;
