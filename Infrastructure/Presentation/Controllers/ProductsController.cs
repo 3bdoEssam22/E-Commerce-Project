@@ -27,7 +27,7 @@ namespace Presentation.Controllers
         [HttpGet("{id:int}")]
         public async Task<ActionResult<ProductDTo>> GetProductById(int id)
         {
-            var Product =await _serviceManager.ProductService.GetProductByIdAsync(id);
+            var Product = await _serviceManager.ProductService.GetProductByIdAsync(id);
             return Ok(Product);
         }
 
