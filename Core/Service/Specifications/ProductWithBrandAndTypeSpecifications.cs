@@ -12,12 +12,14 @@ namespace Services.Specifications
     {
         //Get All Products with Brand and Type.
         public ProductWithBrandAndTypeSpecifications(ProductQueryParams queryParams)
-            : base(p => (!queryParams.BrandId.HasValue || p.BrandId == queryParams.BrandId) && (!queryParams.TypeId.HasValue || p.TypeId == queryParams.TypeId))
+            : base(p => (!queryParams.BrandId.HasValue || p.BrandId == queryParams.BrandId)
+            && (!queryParams.TypeId.HasValue || p.TypeId == queryParams.TypeId)
+            && (string.IsNullOrEmpty(queryParams.searchValue) || (p.Name.ToLower().Contains(queryParams.searchValue))))
         {
             AddInclude(x => x.ProductBrand);
             AddInclude(x => x.ProductType);
 
-            switch (queryParams.sortingOption)
+            switch (queryParams.SortingOption)
             {
                 case ProductSortingOptions.PriceAsc:
                     AddOrderBy(p => p.Price);
