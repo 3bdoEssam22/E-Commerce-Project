@@ -11,13 +11,13 @@ namespace Services.Specifications
     class ProductWithBrandAndTypeSpecifications : BaseSpecifications<Product, int>
     {
         //Get All Products with Brand and Type.
-        public ProductWithBrandAndTypeSpecifications(int? BrandId, int? TypeId, ProductSortingOptions sortingOption)
-            : base(p => (!BrandId.HasValue || p.BrandId == BrandId) && (!TypeId.HasValue || p.TypeId == TypeId))
+        public ProductWithBrandAndTypeSpecifications(ProductQueryParams queryParams)
+            : base(p => (!queryParams.BrandId.HasValue || p.BrandId == queryParams.BrandId) && (!queryParams.TypeId.HasValue || p.TypeId == queryParams.TypeId))
         {
             AddInclude(x => x.ProductBrand);
             AddInclude(x => x.ProductType);
 
-            switch (sortingOption)
+            switch (queryParams.sortingOption)
             {
                 case ProductSortingOptions.PriceAsc:
                     AddOrderBy(p => p.Price);
