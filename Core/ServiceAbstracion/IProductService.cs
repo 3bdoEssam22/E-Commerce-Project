@@ -10,7 +10,7 @@ namespace ServicesAbstracion
     public interface IProductService
     {
         //Get All products
-        Task<IEnumerable<ProductDTo>> GetAllProductsAsync();
+        Task<IEnumerable<ProductDTo>> GetAllProductsAsync(int? BrandId, int? TypeId);
 
         //Get Product By Id
         Task<ProductDTo> GetProductByIdAsync(int id);
