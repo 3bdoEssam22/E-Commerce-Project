@@ -16,6 +16,8 @@ namespace DomainLayer.Contracts
         Task<IEnumerable<TEntity>> GetAllAsync(ISpecifictation<TEntity, TKey> specifictations);
         Task<TEntity?> GetByIdAsync(ISpecifictation<TEntity, TKey> specifictations);
 
+        Task<int> CountAsync(ISpecifictation<TEntity, TKey> specifictations);
+
         #endregion        
 
         Task AddAsync(TEntity entity);

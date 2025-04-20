@@ -32,10 +32,16 @@ namespace Persistence.Repositories
             return await SpecificationEvaluator.CreateQuery(_dbContext.Set<TEntity>(), specifictations).FirstOrDefaultAsync();
         }
 
+        public async Task<int> CountAsync(ISpecifictation<TEntity, TKey> specifictations)
+        {
+            return await SpecificationEvaluator.CreateQuery(_dbContext.Set<TEntity>(), specifictations).CountAsync();
+        }
+
         #endregion
 
         public void Remove(TEntity entity) => _dbContext.Set<TEntity>().Remove(entity);
 
         public void Update(TEntity entity) => _dbContext.Set<TEntity>().Update(entity);
+
     }
 }
