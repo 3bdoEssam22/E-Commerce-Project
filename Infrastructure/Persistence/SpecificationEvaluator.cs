@@ -28,11 +28,14 @@ namespace Persistence
                 query = query.OrderByDescending(specifictation.OrderByDescending);
             }
 
-
-
             if (specifictation.IncludeExpression != null && specifictation.IncludeExpression.Count > 0)
             {
                 query = specifictation.IncludeExpression.Aggregate(query, (current, includeExp) => current.Include(includeExp));  
+            }
+
+            if(specifictation.IsPaginated)
+            {
+                query = query.Skip(specifictation.Skip).Take(specifictation.Take);
             }
 
             return query;
