@@ -1,6 +1,7 @@
 
 using DomainLayer.Contracts;
 using E_Commerce.Web.CustomMiddleWares;
+using E_Commerce.Web.Extensions;
 using E_Commerce.Web.Factories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,38 +22,24 @@ namespace E_Commerce.Web
             #region Add services to the container.
 
             builder.Services.AddControllers();
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-            builder.Services.AddDbContext<StoreDbContext>(options =>
-                    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-            builder.Services.AddScoped<IDataSeeding, DataSeeding>();
-            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-            builder.Services.AddAutoMapper(typeof(Services.AssemblyReference).Assembly);
-            builder.Services.AddScoped<IServiceManager, ServiceManager>();
-            builder.Services.Configure<ApiBehaviorOptions>(options =>
-            {
-                options.InvalidModelStateResponseFactory = ApiResponseFactory.GenerateApiValidationErrorsResponse;
-            });
+            builder.Services.AddSwaggerServices();
+            builder.Services.AddInfrastructureServices(builder.Configuration);
+            builder.Services.AddApplicationServices();
+            builder.Services.AddWebApplicationServices();
 
 
             #endregion            
 
             var app = builder.Build();
-
-            using var scope = app.Services.CreateScope();
-
-            var ObjectOfDataSeeding = scope.ServiceProvider.GetRequiredService<IDataSeeding>();
-
-            await ObjectOfDataSeeding.DataSeedAsync();
+            await app.SeedDataBaseAsync();
 
             #region Configure the HTTP request pipeline.
 
-            app.UseMiddleware<CustomExceptionHandlerMiddleWare>();
+            app.UseCustomExceptionMiddleWare();
 
             if (app.Environment.IsDevelopment())
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerMiddleWare();
             }
 
             app.UseHttpsRedirection();
