@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using StackExchange.Redis;
 
 namespace Persistence
 {
@@ -12,8 +13,16 @@ namespace Persistence
             });
             Services.AddScoped<IDataSeeding, DataSeeding>();
             Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-
+            Services.AddScoped<IBasketRepository, BasketRepository>();
+            Services.AddSingleton<IConnectionMultiplexer>((_) =>
+            {
+                var redisConnectionString = Configuration.GetConnectionString("RedisConnectionString");
+                if (string.IsNullOrEmpty(redisConnectionString))
+                {
+                    throw new ArgumentNullException(nameof(redisConnectionString), "Redis connection string cannot be null or empty.");
+                }
+                return ConnectionMultiplexer.Connect(redisConnectionString);
+            });
 
             return Services;
         }
