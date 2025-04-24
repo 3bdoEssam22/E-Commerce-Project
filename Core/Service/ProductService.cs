@@ -5,7 +5,7 @@ using DomainLayer.Models.ProductModule;
 using Services.Specifications;
 using ServicesAbstracion;
 using Shared;
-using Shared.DataTransferObjects;
+using Shared.DataTransferObjects.ProductModuleDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
