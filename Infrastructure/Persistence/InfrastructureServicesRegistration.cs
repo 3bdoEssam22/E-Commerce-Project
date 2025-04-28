@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Persistence.Data.Identity;
 using StackExchange.Redis;
 
 namespace Persistence
@@ -22,6 +23,11 @@ namespace Persistence
                     throw new ArgumentNullException(nameof(redisConnectionString), "Redis connection string cannot be null or empty.");
                 }
                 return ConnectionMultiplexer.Connect(redisConnectionString);
+            });
+
+            Services.AddDbContext<StoreIdentityDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection"));
             });
 
             return Services;
