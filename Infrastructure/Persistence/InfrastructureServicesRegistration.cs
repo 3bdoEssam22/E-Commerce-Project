@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using DomainLayer.Models.IdentityModule;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Persistence.Data.Identity;
 using StackExchange.Redis;
 
@@ -29,6 +31,10 @@ namespace Persistence
             {
                 options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection"));
             });
+
+            Services.AddIdentityCore<ApplicationUser>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<StoreIdentityDbContext>();
 
             return Services;
         }
