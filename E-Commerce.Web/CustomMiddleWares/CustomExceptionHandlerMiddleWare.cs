@@ -70,7 +70,7 @@ namespace E_Commerce.Web.CustomMiddleWares
         private static int GetBadRequestErrors(BadRequestException badRequestException, ErrorToReturn response)
         {
             response.Errors = badRequestException.Errors;
-            return StatusCodes.Status400BadRequest
+            return StatusCodes.Status400BadRequest;
         }
 
         private static async Task HandleNotFoundEndPointAsync(HttpContext httpContext)
